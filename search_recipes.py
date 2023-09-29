@@ -11,12 +11,11 @@ ingredient_categories = {
 
 #here there is a list of non-ingredients, user will get an error message:
 uncategorised_ingredients = ["salt", "pepper", "satay", "barbecue", "cumin", "oil", "coriander", "parsley", "rosemary", "sage", "nutmeg", "oregano", "tarragon", "mint", "thyme", "tumeric", "ginger"]
-#new categories not present in df
 
+#new categories not present in df
 result['CATEGORY'] = "other"
 
 #categorize ingredients in df
-
 for category, keywords in ingredient_categories.items():
     mask = result['INGREDIENTS'].str.contains('|'.join(keywords), case=False)
     result.loc[mask, 'CATEGORY'] = category
@@ -46,16 +45,16 @@ user_preference = input("Enter your dietary preference (vegan/vegetarian/non-pre
 
 result['PREFERENCE'] = user_preference
 
+keyword_masks = [result['INGREDIENTS'].str.contains(keyword, case=False) for keyword in user_keywords]
+preference_mask = result['PREFERENCE'].str.contains(user_preference, case=False)
+
+mask = keyword_masks[0] & keyword_masks[1] & keyword_masks[2] & preference_mask
+
+filtered_recipes = result[mask]
+
+
 if uncategorised_ingredients:
     print("The following ingredients are not categorised: ", ",".join(uncategorised_ingredients))
-
-#iterate through the user keywords and filter recipes
-for keyword in user_keywords:
-
-    # Filter recipes that contain the keyword in the 'INGREDIENTS' column and match user preference
-    filtered_df = result[(result['INGREDIENTS'].str.contains(keyword, case=False)) &
-                         (result['PREFERENCE'].str.contains(user_preference, case=False))]
-    filtered_recipes = pd.concat([filtered_recipes, filtered_df])
 
 #remove duplicates
 filtered_recipes = filtered_recipes.drop_duplicates()
@@ -67,5 +66,5 @@ print(filtered_recipes)
 print(result)
 
 #testing if the filter works
-#iltered_recipes.to_csv('filtered_recipes.csv', index=False)
-#print("Filtered recipes have been exported to 'filtered_recipes.csv'")
+filtered_recipes.to_csv('filtered_recipes.csv', index=False)
+print("Filtered recipes have been exported to 'filtered_recipes.csv'")

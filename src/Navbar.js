@@ -8,17 +8,17 @@ import iconSearch from "./images/search.svg";
 function Navbar() {
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-                <a className="navbar-item" href="/">
-                    <img src="./images/logo_temp.png" alt="logo_zerowastegourmet" />
-                </a>
+            {/* <div className="navbar-brand"> */}
+            <a className="navbar-item" href="/">
+                <img src="./images/logo_temp.png" alt="logo_zerowastegourmet" width="112" />
+            </a>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="Basic">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+            {/* </div> */}
 
             <div className="navbar-menu" id="navbarBasic" >
                 <a className="navbar-item">
@@ -48,7 +48,6 @@ function Navbar() {
                 </div>
             </div>
         </nav>
-
     );
 }
 
@@ -56,3 +55,19 @@ export default Navbar;
 
 
 // is-fixed-top
+
+
+
+
+//     <nav className="navbar">
+//     <a href="/" className="logo">
+//         <img src="logo_temp" alt="logo" />
+//     </a>
+//     <ul className="nav-links">
+//         <li className="nav-item"><a href="#">Favorite</a></li>
+//         <li className="nav-item"><a href="#">My Kitchen</a></li>
+//         <li className="nav-item"><a href="#">Weekly Plan</a></li>
+//         <li className="nav-item"><a href="#">Sign in</a></li>
+//         <li className="nav-item"><a href="#">Log in</a></li>
+//     </ul>
+// </nav >

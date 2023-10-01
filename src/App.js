@@ -1,9 +1,15 @@
 import 'bulma/css/bulma.css';
-import './App.css';
 import SearchBar from './SearchBar';
 import Navbar from './Navbar'
-import Footer from './Footer';
 import Recipe from './Recipe';
+import RecipeImage1 from './images/recipe1.jpeg';
+import RecipeImage2 from './images/recipe2.jpeg';
+import RecipeImage3 from './images/recipe3.jpeg';
+import RecipeImage4 from './images/recipe4.jpeg';
+import RecipeImage5 from './images/recipe5.jpeg';
+import RecipeImage6 from './images/recipe6.jpeg';
+import Footer from './Footer';
+
 
 
 function App() {
@@ -17,30 +23,24 @@ function App() {
                 <section className='section'>
                     <div className='columns'>
                         <div className='column is-4'>
-                            <Recipe
-                                title='Veggie Stock'
-                                // image={ }
-                                description='You can use vegetable scraps to make stock'
+                            <Recipe title='Veggie Stock' image={RecipeImage1} description='You can also use vegetable scraps to make stock'
                             />
                         </div>
                         <div className='column is-4'>
                             <Recipe
-                                title='Mushroom patties'
-                                description='You can use end of mushrooms as well. Yummy!'
+                                title='Mushroom patties' image={RecipeImage2} description='You can use end of mushrooms as well. Yummy!'
                             />
                         </div>
                         <div className='column is-4'>
-                            <Recipe
-                                title='Cauliflower soup'
-                                description='You can use cauliflower stems as well, with other ingredients.'
+                            <Recipe title='Cauliflower soup' image={RecipeImage3} description='You can use cauliflower stems as well, with other ingredients.'
                             />
                         </div>
-                        <div className='column is-4'>
+                        {/* <div className='column is-4'>
                             <Recipe
                                 title='Broccoli soup'
                                 description='You can use broccoli stalks. It will be more delicious and healthy!'
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </section>
             </div>

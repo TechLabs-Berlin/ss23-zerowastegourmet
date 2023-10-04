@@ -1,15 +1,14 @@
 import 'bulma/css/bulma.css';
-import './App.css';
 import SearchBar from './SearchBar';
-import Navbar from './Navbar'
+import Navbar from './Navbar';
 import Footer from './Footer';
 import Recipe from './Recipe';
-import Recipe1 from './Recipe1';
-import Recipe2 from './Recipe2';
-import Recipe3 from './Recipe3';
-import Recipe4 from './Recipe4';
-import Recipe5 from './Recipe5';
-import Recipe6 from './Recipe6';
+import Recipe1 from './images/recipe1.jpeg';
+import Recipe2 from './images/recipe2.jpeg';
+import Recipe3 from './images/recipe3.jpeg';
+import Recipe4 from './images/recipe4.jpeg';
+import Recipe5 from './images/recipe5.jpeg';
+import Recipe6 from './images/recipe6.jpeg';
 
 
 function App() {

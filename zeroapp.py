@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 
 app = Flask(__name__)
@@ -24,13 +24,13 @@ def return_all():
 
 def get_recipe_ingredient():
     if "id" in request.args:
-        id = str(request.args["id"])
+        id = int(request.args["id"])
     results = []
 
 for ingredient in ingredient_categories:
     if ingredient["id"] == id:
         results.append(ingredient)
-    
+        
 
 if __name__ == "__main__":
     #osPort = os.getenv("PORT")
@@ -40,3 +40,5 @@ if __name__ == "__main__":
     else:
         port = int(osPort)
     app.run(host='0.0.0.0', port=port)
+
+print("Route accessed")

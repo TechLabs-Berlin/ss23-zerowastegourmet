@@ -1,15 +1,16 @@
 import 'bulma/css/bulma.css';
-import './App.css';
 import SearchBar from './SearchBar';
 import Navbar from './Navbar'
 import Footer from './Footer';
 import Recipe from './Recipe';
-import Recipe1 from './Recipe1';
-import Recipe2 from './Recipe2';
-import Recipe3 from './Recipe3';
-import Recipe4 from './Recipe4';
-import Recipe5 from './Recipe5';
-import Recipe6 from './Recipe6';
+import LoginForm from './LoginForm';
+import img1 from './images/recipe1.jpeg'
+// import Recipe1 from './Recipe1';
+// import Recipe2 from './Recipe2';
+// import Recipe3 from './Recipe3';
+// import Recipe4 from './Recipe4';
+// import Recipe5 from './Recipe5';
+// import Recipe6 from './Recipe6';
 
 
 function App() {
@@ -18,14 +19,13 @@ function App() {
 
             <Navbar />
             <SearchBar />
-
             <div className='container'>
                 <section className='section'>
-                    <div className='columns'>
+                    <div className='columns is-multiline'>
                         <div className='column is-4'>
                             <Recipe
                                 title='Veggie Stock'
-                                // image={ }
+                                image={img1}
                                 description='You can use vegetable scraps to make stock'
                             />
                         </div>
@@ -58,10 +58,3 @@ function App() {
 }
 
 export default App;
-
-// <section className="hero">
-//                 <div className="hero-body">
-//                     <p className="title">ZERO WASTE GOURMET</p>
-//                     <p className="subtitle">Cook & Make No Waste With Our Recipes </p>
-//                 </div>
-//             </section>

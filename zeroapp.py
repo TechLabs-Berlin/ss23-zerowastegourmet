@@ -16,24 +16,26 @@ ingredient_categories = [
 def index():
     return "Hello world"
 
-@app.route("/api/ingredient_categories/all", methods=["GET"])
+@app.route("/api/ingredient_categories", methods=["GET"])
+
 def return_all():
     return jsonify(ingredient_categories)
 
 @app.route("/api/ingredient_categories", methods=["GET"])
 
-def get_recipe_ingredient():
+def get_ingredient_categories():
     if "id" in request.args:
         id = int(request.args["id"])
-    results = []
-
-for ingredient in ingredient_categories:
-    if ingredient["id"] == id:
-        results.append(ingredient)
-        
+        results = []
+        for ingredient in ingredient_categories:
+            if ingredient["id"] == id:
+                results.append(ingredient)
+    
+        return jsonify(results)
+    
 
 if __name__ == "__main__":
-    #osPort = os.getenv("PORT")
+        #osPort = os.getenv("PORT")
     osPort = None
     if osPort == None:
         port = 5000

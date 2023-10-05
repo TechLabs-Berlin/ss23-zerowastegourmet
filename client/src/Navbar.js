@@ -5,7 +5,7 @@ import iconKitchen from "./images/kitchen.svg";
 import iconCalendar from "./images/calendar.svg";
 import 'bulma/css/bulma.min.css'
 import LoginForm from "./LoginForm";
-
+import SignupForm from "./Signup";
 
 function Navbar() {
     const [isActive, setIsActive] = useState(false);
@@ -58,7 +58,7 @@ function Navbar() {
            
             <div className="navbar-item">
                 <div className="buttons">
-                    <a className="button" >Sign up</a>
+                    <a ><SignupForm /></a>
                     <a ><LoginForm /></a>
                 </div>
             </div>

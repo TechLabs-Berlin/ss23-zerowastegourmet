@@ -16,12 +16,12 @@ ingredient_categories = [
 def index():
     return "Hello world"
 
-@app.route("/api/ingredient_categories", methods=["GET"])
+#@app.route("/api/ingredient_categories", methods=["GET"])#this seems to be working
 
 def return_all():
     return jsonify(ingredient_categories)
 
-@app.route("/api/ingredient_categories", methods=["GET"])
+@app.route("/api/ingredient_categories", methods=["GET"])#this is duplicated
 
 def get_ingredient_categories():
     if "id" in request.args:

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./Navbar.css";
-import logo_temp from "./images/logo_temp.png";
-import iconHeart from "./images/Heart.svg";
-import iconKitchen from "./images/kitchen.svg";
-import iconCalendar from "./images/calendar.svg";
-import { BsFillSuitHeartFill } from 'react-icons/bs';
-import { BsFillCalendar2CheckFill } from 'react-icons/bs';
-import { BsCupHotFill } from 'react-icons/bs';
+import 'bulma/css/bulma.min.css'
+import logo from "../images/logo.png";
+import iconHeart from "../images/heart.png";
+import iconKitchen from "../images/kitchen.png";
+import iconCalendar from "../images/calendar.png";
+import LoginForm from "./LoginForm";
+import './Navbar.css';
 
-function Navbar() {
+
+export function Navbar() {
     const [isActive, setIsActive] = useState(false);
 
     const toggleMenu = () => {
@@ -16,22 +16,20 @@ function Navbar() {
     }
 
     return (
-
         <nav className="navbar" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
+            <div className="navbar-brand m-2">
                 <a className="navbar-item" href="/">
-                    <img src={logo_temp} alt="logo_zerowastegourmet" />
-
-                    {/* <img src={logo_temp} alt="logo_zerowastegourmet" width="150" /> */}
+                    <img src={logo} alt="logo_zerowastegourmet" width="161" height="158" />
                 </a>
 
                 <a
                     role="button"
-                    className={`navbar-burger ${isActive ? "is-active" : ""}`}
+                    className={`navbar-burger ${isActive ? 'is-active' : ''}`}
                     aria-label="menu"
                     aria-expanded="false"
                     onClick={toggleMenu}
                     data-target="navbarBasicExample"
+
                 >
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -39,26 +37,28 @@ function Navbar() {
                 </a>
             </div>
 
-            <div id="navbarBasicExample" className={`navbar-menu ${isActive ? "is-active" : ""}`}>
-                <div className="navbar-start">
-                    <a className="navbar-item">
-                        <BsFillSuitHeartFill />  Favorite
+            <div id="navbarBasicExample" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
+                <div className="navbar-end is-flex">
+                    <a className="navbar-item has-text-success">
+                        <img className="navbar-icon-heart mr-1" src={iconHeart} alt="Heart" />
+                        Favorite
                     </a>
 
-                    <a className="navbar-item">
-                        <BsCupHotFill />  My Kitchen
+                    <a className="navbar-item has-text-success">
+                        <img className="navbar-icon mr-1" src={iconKitchen} alt="Kitchen" />
+                        My Kitchen
                     </a>
 
-                    <a className="navbar-item">
-                        <BsFillCalendar2CheckFill />  Weekly Plan
+                    <a className="navbar-item has-text-success">
+                        <img className="navbar-icon mr-1" src={iconCalendar} alt="Calendar" />
+                        Weekly Plan
                     </a>
-                </div>
 
-                <div className="navbar-end">
+
                     <div className="navbar-item">
                         <div className="buttons">
-                            <a className="button"><strong>Sign up</strong></a>
-                            <a className="button">Log in</a>
+                            <a className="button" >Sign up</a>
+                            <a ><LoginForm /></a>
                         </div>
                     </div>
                 </div>
@@ -66,6 +66,3 @@ function Navbar() {
         </nav >
     );
 }
-
-
-export default Navbar;

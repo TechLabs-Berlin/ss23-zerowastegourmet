@@ -6,9 +6,13 @@ import iconCalendar from "./images/calendar.svg";
 import 'bulma/css/bulma.min.css'
 import LoginForm from "./LoginForm";
 import SignupForm from "./Signup";
+import { Link } from "react-router-dom";
+import { useContext } from "react";                     
+import { AuthContext } from "./context/auth.context";
 
 function Navbar() {
     const [isActive, setIsActive] = useState(false);
+    const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
     const toggleMenu = () => {
         setIsActive(!isActive);
@@ -17,11 +21,11 @@ function Navbar() {
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item " href="/">
+                <Link className="navbar-item " to="/">
                     <img src="https://cdn.animaapp.com/projects/6519371fc7f7d75d0d661f4d/releases/6519381acdfbbe8c78008698/img/---icon--branch-1--1@2x.png" alt="logo_zerowastegourmet" className="mr-2"/>
 
                     <img src={logo_temp} alt="logo_zerowastegourmet" width="150" />
-                </a>
+                </Link>
 
                 <a
                     role="button"

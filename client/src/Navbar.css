@@ -1,12 +1,26 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     align-items: center;
     width: 100%;
     filter: drop-shadow(lightgray 0.1rem 0.1rem 0.4rem);
+    background-color: rgb(223, 224, 178);
 }
 
-.navbar-menu {
+/* .buttons {
+    background-color: whitesmoke;
+} */
+
+/* .navbar-item {
+    align-items: center;
+} */
+
+/* .navbar-icon-heart {
+    width: 80%;
+    margin-right: 7px;
+} */
+
+/* .navbar-menu {
     display: flex;
     justify-content: flex-end;
     padding: 20px;
@@ -14,22 +28,6 @@
 
 .navbar-icon {
     margin: 8px;
-}
-
-.navbar-icon-heart {
-    width: 80%;
-    margin-right: 7px;
-}
-
-
-/* .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-left: 30px;
-    padding-right: 10px;
-    filter: drop-shadow(lightgray 0.1rem 0.1rem 0.4rem);
 }
 
 .nav-links {

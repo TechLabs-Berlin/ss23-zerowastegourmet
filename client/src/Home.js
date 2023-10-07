@@ -9,7 +9,6 @@ import img1 from './images/recipe1.jpeg'
 function Home() {
     return (
         <div>
-            <Navbar />
             <SearchBar />
             <div className='container'>
                 <section className='section'>

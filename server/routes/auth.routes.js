@@ -6,13 +6,6 @@ const User = require("../models/User.model");
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
 
-router.get('/signup', (req, res) => res.render('auth/signup'));
-
-router.get('/login', (req, res) => res.render('auth/login'));
-
-router.get('/userprofile', (req, res) => res.render('userprofile', isAuthenticated, { userInSession: req.session.currentUser }));
- 
-
 router.post('/signup', (req, res, next) => {
     console.log("The form data: ", req.body);
    
@@ -51,7 +44,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     const { email, password } = req.body;
-   
+ 
     if (email === '' || password === '') {
       res.status(400).json({ message: "Provide email and password." });
       return;
@@ -59,12 +52,12 @@ router.post('/login', (req, res, next) => {
    
     User.findOne({ email })
       .then((foundUser) => {
-      
+  
         if (!foundUser) {
           res.status(401).json({ message: "User not found." })
           return;
         }
-        const passwordCorrect = bcryptjs.compareSync(password, foundUser.password);
+        const passwordCorrect = bcryptjs.compareSync(password, foundUser.passwordHash);
    
         if (passwordCorrect) {
           const { _id, email } = foundUser;
@@ -86,7 +79,6 @@ router.post('/login', (req, res, next) => {
   });
 
   router.get('/verify', isAuthenticated, (req, res, next) => { 
-    console.log(`req.payload`, req.payload);
     res.status(200).json(req.payload);
   });
 

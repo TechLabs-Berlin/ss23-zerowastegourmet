@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 
-
-require('./config/session.config')(app);
-
-app.use(cors({
-    origin: 'http://localhost:3000', credentials: true }));
-
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    allowedHeaders: 'Content-Type,Authorization',
+  })
+);
 
 require('dotenv/config');
 

@@ -22,8 +22,9 @@ const LoginForm = () => {
     e.preventDefault();
     const requestBody = { email, password };
 
-    axios.post("http://localhost:2000/login", requestBody)
+    axios.post("http://localhost:2000/login", requestBody, { withCredentials: true,})
       .then((response) => {
+        console.log('JWT token', response )
         storeToken(response.data.authToken);
         authenticateUser();
         navigate("/userprofile");

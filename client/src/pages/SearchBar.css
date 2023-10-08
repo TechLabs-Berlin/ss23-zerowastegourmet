@@ -5,3 +5,8 @@
 .field {
     margin-top: 5rem;
 }
+
+.level-item {
+    display: flex;
+    flex-direction: column;
+}

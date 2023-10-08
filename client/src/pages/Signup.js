@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'bulma/css/bulma.min.css';
 import './LoginForm.css';
-import axios from "axios";
+import axios from 'axios';
 
-const SignupForm = () => {
+export function Signup() {
+
+  // const SignupForm = () => {
   const [showLogin, setShowSignup] = useState(false);
   const dropdownRef = useRef(null);
   const [email, setEmail] = useState("");
@@ -53,7 +55,7 @@ const SignupForm = () => {
         <div className="dropdown-menu ">
           <div className="dropdown-content p-0">
             <form onSubmit={(e) => handleSubmit(e)} className="box">
-            <h1 className='title is-4 has-text-centered'>Sign Up</h1>
+              <h1 className='title is-4 has-text-centered'>Sign Up</h1>
               <div className="field mt-1">
                 <label className="label">Email</label>
                 <div className="control">
@@ -78,5 +80,6 @@ const SignupForm = () => {
     </div>
   );
 };
+// };
 
-export default SignupForm;
+// export default Signup;

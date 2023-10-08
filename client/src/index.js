@@ -1,17 +1,17 @@
-x//import the react, react DOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-//get a reference to the div(ELEMENT) with ID root
+import App from './App';
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProviderWrapper } from "./context/auth.context";
+
 const el = document.getElementById('root');
-//tell React to take control of that ELEMENT
 const root = ReactDOM.createRoot(el);
-//create a COMPONENT (returns JSX)
-function App() {
-    let message = 'bye there!'
-    if (Math.random() > 0.5) {
-        message = 'hi there!'
-    }
-    return <h1>{message}This is an web application of the Zero Waste Gourmet</h1>;
-}
-//show that COMPONENT on the screen
-root.render(<App />);
+
+
+root.render(
+    <Router>
+        <AuthProviderWrapper>
+            <App />
+        </AuthProviderWrapper>
+    </Router>
+);

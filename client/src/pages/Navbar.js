@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import logo_temp from "./images/logo_temp.png";
-import iconHeart from "./images/Heart.svg";
-import iconKitchen from "./images/kitchen.svg";
-import iconCalendar from "./images/calendar.svg";
-import 'bulma/css/bulma.min.css'
-import LoginForm from "./LoginForm";
-import SignupForm from "./Signup";
 import { Link } from "react-router-dom";
+import 'bulma/css/bulma.min.css'
+import logo from "../images/logo.png";
+import iconHeart from "../images/heart.png";
+import iconKitchen from "../images/kitchen.png";
+import iconCalendar from "../images/calendar.png";
+import { LoginForm } from "./LoginForm";
+import { Signup } from "./Signup";
 import { useContext } from "react";
-import { AuthContext } from "./context/auth.context";
+import { AuthContext } from "../context/auth.context";
+import './Navbar.css';
 
-function Navbar() {
+export function Navbar() {
     const [isActive, setIsActive] = useState(false);
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
@@ -21,10 +22,9 @@ function Navbar() {
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <Link className="navbar-item " to="/">
-                    <img src="https://cdn.animaapp.com/projects/6519371fc7f7d75d0d661f4d/releases/6519381acdfbbe8c78008698/img/---icon--branch-1--1@2x.png" alt="logo_zerowastegourmet" className="mr-2" />
-
-                    <img src={logo_temp} alt="logo_zerowastegourmet" width="150" />
+                <Link className="navbar-item" to="/">
+                    <img className="navbar-item-logo" src={logo} alt="logo_zerowastegourmet" />
+                    <h2 className="has-text-weight-bold is-size-5" style={{ paddingLeft: "20px", fontStyle: "italic" }}>ZeroWasteGourmet</h2>
                 </Link>
 
                 <a
@@ -34,7 +34,6 @@ function Navbar() {
                     aria-expanded="false"
                     onClick={toggleMenu}
                     data-target="navbarBasicExample"
-
                 >
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -43,46 +42,32 @@ function Navbar() {
             </div>
 
             <div id="navbarBasicExample" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
-                <div className="navbar-end">
+                <div className="navbar-end has-text-centered my-0">
                     <a className="navbar-item">
                         <img className="navbar-icon-heart mr-1" src={iconHeart} alt="Heart" />
-                        Favorite
+                        <p className="my-1">Favorite</p>
                     </a>
 
                     <a className="navbar-item">
                         <img className="navbar-icon mr-1" src={iconKitchen} alt="Kitchen" />
-                        My Kitchen
+                        <p className="my-1">Kitchen</p>
                     </a>
 
                     <a className="navbar-item">
                         <img className="navbar-icon mr-1" src={iconCalendar} alt="Calendar" />
-                        Weekly Plan
+                        <p className="my-1">Weekly Plan</p>
                     </a>
-                    {isLoggedIn && (
-                        <div className="navbar-item">
-                            <Link className="button" to="/userprofile">
-                                Profile
-                            </Link>
 
-                            <button className="button ml-3" onClick={logOutUser}>Logout</button>
+                    <div className="navbar-item">
+                        <div className="buttons">
+                            <a ><Signup /></a>
+                            <a ><LoginForm /></a>
                         </div>
-
-                    )}
-
-                    {!isLoggedIn && (
-                        <div className="navbar-item">
-                            <div className="buttons">
-                                <a><SignupForm /></a>
-                                <a><LoginForm /></a>
-                            </div>
-                        </div>
-                    )}
-
+                    </div>
                 </div>
             </div>
         </nav >
     );
 }
 
-
-export default Navbar;
+// export default Navbar;

@@ -1,6 +1,6 @@
 import './Recipe.css';
 
-function Recipe({ title, image, description }) {
+export function Recipe({ title, image, description }) {
     return (
         <div className="card height-card">
             <div className="card-image">
@@ -19,4 +19,4 @@ function Recipe({ title, image, description }) {
     );
 }
 
-export default Recipe;
+// export default Recipe;

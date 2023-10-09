@@ -1,0 +1,27 @@
+.navbar {
+    background-color: rgba(13, 161, 72, 0.15);
+    box-shadow: 0 0.5px 15px 1 rgba(0, 0, 0, .1);
+    height: 140px;
+}
+
+.navbar-item {
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.navbar-item img {
+    /* height: 80%; */
+    max-height: 100px;
+}
+
+/* .navbar-brand {
+    align-items: center;
+} */
+
+/* .navbar-end {
+    align-items: center;
+} */
+
+/* .navbar:hover {
+    color: rgb(13, 161, 72);
+} */

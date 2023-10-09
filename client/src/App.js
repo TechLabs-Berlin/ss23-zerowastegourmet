@@ -1,25 +1,18 @@
-import 'bulma/css/bulma.css';
-import Home from './Home'
-import UserProfile from './UserProfile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './Navbar';
-import IsPrivate from './IsPrivate';
+import { UserProfile } from './pages/UserProfile';
+import { Home } from './pages/Home'
+import 'bulma/css/bulma.css';
 
 
 function App() {
 
     return (
-       <>
-       <Navbar />
-       <Routes>
-                <Route path="/" element={<Home />}/>
-                <Route path="/userprofile" element={<IsPrivate><UserProfile /></IsPrivate>} />
-        </Routes>
-       
-       
-       </>
-
-    
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/userprofile" element={<UserProfile />} />
+            </Routes>
+        </Router>
     );
 }
 

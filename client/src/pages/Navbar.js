@@ -9,6 +9,7 @@ import { LoginForm } from "./LoginForm";
 import { Signup } from "./Signup";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+// import { Home } from "./Home";
 import './Navbar.css';
 
 export function Navbar() {

@@ -3,6 +3,22 @@ import { useState } from 'react';
 import { SearchResult } from './SearchResult';
 import iconSearch from '../images/search.svg';
 
+// search query?
+// const App = () => {
+//     const [query, setQuery] = React.useState("");
+//     const [result, setResult] = React.useState("");
+//     React.useEffect(() => {
+//         Api.invokeQuery(query)
+//             .then(result => setResult(result));
+//     }, [query]);
+//     return (
+//         <div>
+//             <Navbar value={query} onChange={setQuery} />
+//             <SearchResult> { result } </SearchResult>
+//         </div>
+//     )
+// }
+
 function getSearchResult() {
     const recipes = ['recipe1', 'recipe2', 'recipe3']
     return recipes[Math.floor(Math.random() * recipes.length)]

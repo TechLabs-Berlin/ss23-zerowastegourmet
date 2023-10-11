@@ -1,7 +1,5 @@
 import 'bulma/css/bulma.css';
 import { SearchBar } from './SearchBar';
-import { Navbar } from './Navbar'
-import { Footer } from './Footer';
 import { Recipe } from './Recipe';
 import img1 from '../images/recipe1.jpeg'
 import img2 from '../images/recipe2.jpeg'
@@ -14,7 +12,6 @@ import img6 from '../images/recipe6.jpeg'
 export function Home() {
     return (
         <div>
-            <Navbar />
             <SearchBar />
             <div className='container'>
                 <section className='section'>
@@ -64,9 +61,6 @@ export function Home() {
                     </div>
                 </section>
             </div>
-
-            <Footer />
-
         </div>
     );
 }

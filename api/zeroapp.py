@@ -34,11 +34,24 @@ def get_ingredient_categories():
         return jsonify(results)
     
 
+#this function is getting the input from the client and returning the message to node, so the variable DATA is the input from the client and the return 
+#sends back the info that nodeJs need!
+@app.route("/api/ingredient_categories", methods=["POST"])     
+def add_ingredient_category():
+    data = request.get_json() 
+    print('Received message from Node.js:', data)
+
+    response_data = {'message': 'Message received by Flask'}
+    return jsonify(response_data)
+
+
+
+
 if __name__ == "__main__":
         #osPort = os.getenv("PORT")
     osPort = None
     if osPort == None:
-        port = 5000
+        port = 1000
     else:
         port = int(osPort)
     app.run(host='0.0.0.0', port=port)

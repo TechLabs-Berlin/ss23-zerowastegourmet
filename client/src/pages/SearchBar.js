@@ -2,6 +2,7 @@ import './SearchBar.css';
 import { useState } from 'react';
 import { SearchResult } from './SearchResult';
 import iconSearch from '../images/search.svg';
+import axios from 'axios';
 
 // search query?
 // const App = () => {
@@ -19,16 +20,39 @@ import iconSearch from '../images/search.svg';
 //     )
 // }
 
-function getSearchResult() {
-    const recipes = ['recipe1', 'recipe2', 'recipe3']
-    return recipes[Math.floor(Math.random() * recipes.length)]
-}
+// function getSearchResult() {
+//     const recipes = ['recipe1', 'recipe2', 'recipe3']
+//     return recipes[Math.floor(Math.random() * recipes.length)]
+// }
 
 export function SearchBar() {
     const [recipes, setRecipes] = useState([]);
-    const handleClick = () => {
-        setRecipes([...recipes, getSearchResult()]);
-    };
+
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+      };
+    
+      const sendDataToBackend = async () => {
+        try {
+          const response = await axios.post('http://localhost:2000/recipes', { data: inputValue });
+          
+          if (response.status === 200) {
+              setInputValue("");
+              console.log('Data sent successfully');
+          } else {
+            console.error('Failed to send data');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+
+
+    // const handleClick = () => {
+    //     setRecipes([...recipes, getSearchResult()]);
+    // };
     const renderedResults = recipes.map((recipe, index) => {
         return <SearchResult type={recipe} key={index} />
     });
@@ -38,8 +62,13 @@ export function SearchBar() {
             <div className='level-item' style={{ padding: '2rem' }}>
 
                 <div className='field has-addons'>
-                    <input type='text' className='input' placeholder='Type 3 ingredients' />
-                    <button className='button' onClick={handleClick}><img className='navbar-icon-search' src={iconSearch} alt='Search' />
+                    <input 
+                        type='text' 
+                        className='input'
+                        value={inputValue}
+                        onChange={handleInputChange} 
+                        placeholder='Type 3 ingredients' />
+                    <button className='button' onClick={sendDataToBackend}><img className='navbar-icon-search' src={iconSearch} alt='Search' />
                     </button>
                 </div>
 
@@ -50,4 +79,3 @@ export function SearchBar() {
     )
 }
 
-// export default SearchBar;

@@ -33,6 +33,8 @@ app.use('/', index);
 const authRouter = require('./routes/auth.routes'); 
 app.use('/', authRouter);
 
+const recipesRouter = require('./routes/recipes.routes');
+app.use('/', recipesRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Serving on port ${process.env.PORT}`);

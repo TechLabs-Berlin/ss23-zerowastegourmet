@@ -24,14 +24,17 @@ def return_all():
 @app.route("/api/ingredient_categories", methods=["GET"])#this is duplicated
 
 def get_ingredient_categories():
-    if "id" in request.args:
-        id = int(request.args["id"])
-        results = []
-        for ingredient in ingredient_categories:
-            if ingredient["id"] == id:
-                results.append(ingredient)
+
+    keyword1 = request.args.get("keyword1")
+    keyword2 = request.args.get("keyword2")
+    keyword3 = request.args.get("keyword3")
     
-        return jsonify(results)
+    results = []
+    for ingredient in ingredient_categories:
+        if any(keyword in ingredient for keyword in [keyword1, keyword2, keyword3]):
+            results.append(ingredient)
+
+    return jsonify(results)
     
 
 if __name__ == "__main__":

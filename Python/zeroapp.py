@@ -23,6 +23,28 @@ def return_all():
 
 @app.route("/api/ingredient_categories", methods=["GET"])#this is duplicated
 
+@app.route("/api/filter_recipes", methods=["POST"])
+
+def filter_recipes():
+    data = request.get_json()
+    user_keywords = data.get("ingredients", [])
+    ingredients =  [kw.strip() for kw in user_keywords.split(',')]
+    print(ingredients)
+    # Initialize a mask for filtering
+    # for i, ing in enumerate(ingredients);
+    
+    filter_mask = result['INGREDIENTS'].str.contains(ingredients[0], case=False)
+    print(filter_mask.sum())
+    # print('|'.join(user_keywords))
+    # Filter the recipes based on user input
+    filtered_recipes = result[filter_mask]
+   
+    # print(filtered_recipes)
+    # Convert filtered recipes to a list of dictionaries for JSON response
+    filtered_recipes_json = filtered_recipes.to_dict(orient="records")
+
+    return jsonify(filtered_recipes_json)
+
 def get_ingredient_categories():
 
     keyword1 = request.args.get("keyword1")

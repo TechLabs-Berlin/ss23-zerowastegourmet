@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-
+import pandas as pd
+from recipes import result
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -11,40 +12,60 @@ ingredient_categories = [
     {"id": 3, "other": ["milk", "cream", "rice", "bean", "pasta", "ziti", "orzo", "spaghetti", "ravioli", "chickpea", "egg", "tofu", "dumpling", "linguine", "quinoa", "cous cous", "barley", "bulgur", "noodle", "cheese", "lentil", "chocolate", "parmesan"]},
 ]
 
-@app.route("/")
+# @app.route("/")
 
-def index():
-    return "Hello world"
+# def index():
+#     return "Hello world"
 
-#@app.route("/api/ingredient_categories", methods=["GET"])#this seems to be working
+# #@app.route("/api/ingredient_categories", methods=["GET"])#this seems to be working
 
-def return_all():
-    return jsonify(ingredient_categories)
+# def return_all():
+#     return jsonify(ingredient_categories)
 
-@app.route("/api/ingredient_categories", methods=["GET"])#this is duplicated
+# @app.route("/api/ingredient_categories", methods=["GET"])#this is duplicated
 
-def get_ingredient_categories():
-    if "id" in request.args:
-        id = int(request.args["id"])
-        results = []
-        for ingredient in ingredient_categories:
-            if ingredient["id"] == id:
-                results.append(ingredient)
+# def get_ingredient_categories():
+#     if "id" in request.args:
+#         id = int(request.args["id"])
+#         results = []
+#         for ingredient in ingredient_categories:
+#             if ingredient["id"] == id:
+#                 results.append(ingredient)
     
-        return jsonify(results)
+#         return jsonify(results)
     
 
-#this function is getting the input from the client and returning the message to node, so the variable DATA is the input from the client and the return 
-#sends back the info that nodeJs need!
-@app.route("/api/ingredient_categories", methods=["POST"])     
-def add_ingredient_category():
-    data = request.get_json() 
-    print('Received message from Node.js:', data)
+# #this function is getting the input from the client and returning the message to node, so the variable DATA is the input from the client and the return 
+# #sends back the info that nodeJs need!
+# @app.route("/api/ingredient_categories", methods=["POST"])     
+# def add_ingredient_category():
+#     data = request.get_json() 
+#     print('Received message from Node.js:', data)
 
-    response_data = {'message': 'Message received by Flask'}
-    return jsonify(response_data)
+#     response_data = {'message': 'Message received by Flask'}
+#     return jsonify(response_data)
 
 
+@app.route("/api/filter_recipes", methods=["POST"])
+def filter_recipes():
+    data = request.get_json()
+    user_keywords = data.get("ingredients", [])
+    ingredients =  [kw.strip() for kw in user_keywords.split(',')]
+    print(ingredients)
+    # Initialize a mask for filtering
+    # for i, ing in enumerate(ingredients);
+        
+    filter_mask = result['INGREDIENTS'].str.contains(ingredients[0], case=False)
+    print(filter_mask.sum())
+    # print('|'.join(user_keywords))
+    # Filter the recipes based on user input
+    filtered_recipes = result[filter_mask]
+   
+    # print(filtered_recipes)
+    # Convert filtered recipes to a list of dictionaries for JSON response
+    filtered_recipes_json = filtered_recipes.to_dict(orient="records")
+
+    return jsonify(filtered_recipes_json)
 
 
 if __name__ == "__main__":

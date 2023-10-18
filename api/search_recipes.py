@@ -1,5 +1,6 @@
 from recipes import result
 import pandas as pd
+from zeroapp import user_keywords
 
 #ingredient-category mappings as needed.
 ingredient_categories = {
@@ -24,8 +25,8 @@ for category, keywords in ingredient_categories.items():
 filtered_recipes = pd.DataFrame(columns=result.columns)
 
 #get user input
-user_keywords = []
-for i in range(3):
+
+for keyword in user_keywords:
     keyword = input(f"Enter ingredient {i+1}: ").strip().lower()
     user_keywords.append(keyword)
 
@@ -40,21 +41,21 @@ for category, keywords in ingredient_categories.items():
 if is_uncategorised:
     uncategorised_ingredients.append(keyword)
 
-#enter user preference
-user_preference = input("Enter your dietary preference (vegan/vegetarian/non-preferential): ").strip().lower()
+# #enter user preference
+# user_preference = input("Enter your dietary preference (vegan/vegetarian/non-preferential): ").strip().lower()
 
-result['PREFERENCE'] = user_preference
+# result['PREFERENCE'] = user_preference
 
-keyword_masks = [result['INGREDIENTS'].str.contains(keyword, case=False) for keyword in user_keywords]
-preference_mask = result['PREFERENCE'].str.contains(user_preference, case=False)
+# keyword_masks = [result['INGREDIENTS'].str.contains(keyword, case=False) for keyword in user_keywords]
+# preference_mask = result['PREFERENCE'].str.contains(user_preference, case=False)
 
-mask = keyword_masks[0] & keyword_masks[1] & keyword_masks[2] & preference_mask
+# mask = keyword_masks[0] & keyword_masks[1] & keyword_masks[2] & preference_mask
 
-filtered_recipes = result[mask]
+# filtered_recipes = result[mask]
 
 
-if uncategorised_ingredients:
-    print("The following ingredients are not categorised: ", ",".join(uncategorised_ingredients))
+# if uncategorised_ingredients:
+#     print("The following ingredients are not categorised: ", ",".join(uncategorised_ingredients))
 
 #remove duplicates
 filtered_recipes = filtered_recipes.drop_duplicates()

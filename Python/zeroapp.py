@@ -29,12 +29,18 @@ def filter_recipes():
     data = request.get_json()
     user_keywords = data.get("ingredients", [])
     ingredients =  [kw.strip() for kw in user_keywords.split(',')]
-    print(ingredients)
+    #print(ingredients)
     # Initialize a mask for filtering
     # for i, ing in enumerate(ingredients);
-    
-    filter_mask = result['INGREDIENTS'].str.contains(ingredients[0], case=False)
-    print(filter_mask.sum())
+
+    keyword_masks = []
+
+    for keyword in ingredients:
+    keyword_mask = result['INGREDIENTS'].str.contains(keyword, case=False)
+    keyword_masks.append(keyword_mask)
+
+    filter_mask = all(keyword_masks)
+
     # print('|'.join(user_keywords))
     # Filter the recipes based on user input
     filtered_recipes = result[filter_mask]
@@ -44,20 +50,6 @@ def filter_recipes():
     filtered_recipes_json = filtered_recipes.to_dict(orient="records")
 
     return jsonify(filtered_recipes_json)
-
-def get_ingredient_categories():
-
-    keyword1 = request.args.get("keyword1")
-    keyword2 = request.args.get("keyword2")
-    keyword3 = request.args.get("keyword3")
-    
-    results = []
-    for ingredient in ingredient_categories:
-        if any(keyword in ingredient for keyword in [keyword1, keyword2, keyword3]):
-            results.append(ingredient)
-
-    return jsonify(results)
-    
 
 if __name__ == "__main__":
         #osPort = os.getenv("PORT")

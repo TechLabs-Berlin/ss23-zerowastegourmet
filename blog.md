@@ -56,12 +56,11 @@ The login and signup functions were implemented on the frontend using **React ho
 
 **Data Collection & Search feature**
 
-We built a recipe scraper to scrape recipes from various websites including food.com. Databases are created via **SQLite3** utilizing categorised datasets: vegan, vegetarian, meat, fish, waste recipes (https://github.com/TechLabs-Berlin/ss23-zerowastegourmet/tree/main/Databases%20Scraper%20V3). Based on dietary restrictions a preselection of corresponding databases and a search function is performed, prompting the user for ingredients and then matching those (after removing common filler words) in an AND fashion to recipes in databases. Additionally the search is also performed in an OR fashion to recommend recipes to the user. Previously displayed recipes are excluded in this search.
+We built a recipe scraper to scrape recipes from various websites. Databases are created via SQLite3 utilizing categorised datasets: vegan, vegetarian, meat, fish, waste recipes (https://github.com/TechLabs-Berlin/ss23-zerowastegourmet/tree/main/Databases%20Scraper%20V3). Based on dietary restrictions a preselection of corresponding databases and a search function is performed, prompting the user for ingredients and then matching those (after removing common filler words) in an AND fashion to recipes in databases. Additionally the search is also performed in an OR fashion to recommend recipes to the user. Previously displayed recipes are excluded in this search.
+We also built the initial API in Flask to connect to the Backend.
+Users can utilize our project files in the git repository
 
-We also built a search feature in **Python** using 3 keywords the user would enter (3 different ingredients) as well as intermediary files to connect the search to the databases.
-
-We also built the initial API in **Flask** to connect to the Backend.
-Users can use our our files in the git repository.
+https://github.com/TechLabs-Berlin/ss23-zerowastegourmet/tree/main/Databases%20Scraper%20V3
 
 
 ## If we had more time

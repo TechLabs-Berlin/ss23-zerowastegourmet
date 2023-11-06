@@ -1,69 +1,62 @@
-import 'bulma/css/bulma.css';
+import React, { useState, useEffect } from 'react';
 import { SearchBar } from './SearchBar';
 import { Recipe } from './Recipe';
-import img1 from '../images/recipe1.jpeg'
-import img2 from '../images/recipe2.jpeg'
-import img3 from '../images/recipe3.jpeg'
-import img4 from '../images/recipe4.jpeg'
-import img5 from '../images/recipe5.jpeg'
-import img6 from '../images/recipe6.jpeg'
-
+import { RecipePage } from './RecipePage';
+import axios from 'axios';
+import logo from "../images/logo.png";
 
 export function Home() {
-    return (
-        <div>
-            <SearchBar />
-            <div className='container'>
-                <section className='section'>
-                    <div className='columns is-multiline'>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Veggie Stock'
-                                image={img1}
-                                description='You can use vegetable scraps to make stock'
-                            />
-                        </div>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Mushroom patties'
-                                image={img2}
-                                description='You can use end of mushrooms as well. Yummy!'
-                            />
-                        </div>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Cauliflower soup'
-                                image={img3}
-                                description='You can use cauliflower stems as well, with other ingredients.'
-                            />
-                        </div>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Broccoli soup'
-                                image={img4}
-                                description='You can use broccoli stalks. It will be more delicious and healthy!'
-                            />
-                        </div>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Broccoli soup'
-                                image={img5}
-                                description='You can use broccoli stalks. It will be more delicious and healthy!'
-                            />
-                        </div>
-                        <div className='column is-4'>
-                            <Recipe
-                                title='Broccoli soup'
-                                image={img6}
-                                description='You can use broccoli stalks. It will be more delicious and healthy!'
-                            />
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    );
-}
+  const [searchResults, setSearchResults] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
 
-// export default Home;
+  useEffect(() => {
+    axios.get('http://localhost:2000/all_recipes')
+      .then((response) => {
+        const recipes = response.data;
+        setSearchResults(recipes.slice(0, 9));
+      })
+      .catch((error) => {
+        console.error("Error fetching recipes:", error);
+      });
+  }, []);
 
+  const handleSearchResults = (results) => {
+    setSearchResults(results.slice(0, 9));
+  };
+
+  const handleRecipeClick = (title) => {
+    axios.get(`http://localhost:2000/recipes/${title}`)
+      .then((response) => {
+        setSelectedRecipe(response.data.recipes);
+      })
+      .catch((error) => {
+        console.error("Error fetching recipe details:", error);
+      });
+  };
+
+  return (
+    <div>
+      <SearchBar onSearchResults={handleSearchResults} />
+      <div className='container'>
+        <section className='section'>
+          <div className='columns is-multiline'>
+            {selectedRecipe ? (
+              <RecipePage recipe={selectedRecipe}/>
+            ) : (
+              searchResults.map((recipe, index) => (
+                <div className='column is-4' key={index}>
+                    <Recipe
+                      title={recipe.TITLE}
+                      image={logo}
+                      description='You can use vegetable scraps to make stock'
+                      onClick={handleRecipeClick}
+                    />
+                </div>
+              ))
+            )}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};

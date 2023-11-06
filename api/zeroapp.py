@@ -1,9 +1,14 @@
 from flask import Flask, jsonify, request
 import pandas as pd
 from recipes import result
+from flask_cors import CORS
+
+
+print(result)
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+CORS(app)
 
 ingredient_categories = [
     {"id": 0, "meat": ["venison","beef", "steak", "chicken", "pork", "lamb", "fish", "meatball", "tuna", "turkey", "bacon", "ham", "sausage", "chorizo", "prawn", "seafood", "crab", "lobster", "shrimp"]},
@@ -44,28 +49,37 @@ ingredient_categories = [
 
 #     response_data = {'message': 'Message received by Flask'}
 #     return jsonify(response_data)
-
+@app.route("/api/all_recipes", methods=["GET"])
+def get_all_recipes():
+    all_recipes = result.to_dict(orient="records")
+    return jsonify(all_recipes)
 
 @app.route("/api/filter_recipes", methods=["POST"])
 def filter_recipes():
     data = request.get_json()
     user_keywords = data.get("ingredients", [])
-    ingredients =  [kw.strip() for kw in user_keywords.split(',')]
-    print(ingredients)
-    # Initialize a mask for filtering
-    # for i, ing in enumerate(ingredients);
-        
-    filter_mask = result['INGREDIENTS'].str.contains(ingredients[0], case=False)
-    print(filter_mask.sum())
-    # print('|'.join(user_keywords))
-    # Filter the recipes based on user input
+    ingredients = [kw.strip() for kw in user_keywords.split(',')]
+
+    keyword_masks = []
+
+    for keyword in ingredients:
+        keyword_mask = result['INGREDIENTS'].str.contains(keyword, case=False)
+        keyword_masks.append(keyword_mask)
+
+    filter_mask = pd.concat(keyword_masks, axis=1).all(axis=1)
+
     filtered_recipes = result[filter_mask]
-   
-    # print(filtered_recipes)
-    # Convert filtered recipes to a list of dictionaries for JSON response
+
     filtered_recipes_json = filtered_recipes.to_dict(orient="records")
 
     return jsonify(filtered_recipes_json)
+
+@app.route("/api/recipe/<title>", methods=["GET"])
+def get_recipe_by_title(title):
+    selected_recipe = result[result['TITLE'] == title]
+    if selected_recipe.empty:
+        return jsonify({ "error": "Recipe not found" }), 404
+    return jsonify(selected_recipe.iloc[0].to_dict())
 
 
 if __name__ == "__main__":

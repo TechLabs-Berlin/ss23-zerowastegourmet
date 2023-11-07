@@ -1,111 +1,158 @@
-# ss23-zerowastegourmet
+<p align="center">
+  </p>
 
-Abstract: 
-In order to reduce food waste at home, we developed a web app called "ZeroWasteGourmet," which helps individual users to cook with recipes that minimize food waste, plan grocery shopping, and  plan meals with our weekly planner function.
-Users can change their buying, cooking, and eating habits in a sustainable way. Our recipes encourage users to use all parts of an ingredient by cooking. For instance, onion peels, a broccoli stem, or ends of mushrooms can also be used instead of thrown away.
-Our goal is to provide a sustainable cooking solution.
+<h1 align="center">ZeroWasteGourmet</h1>
 
-Setup
+<p align="center">
+  <a href="#about">About</a> •
+  <a href="#setup">Setup</a> •
+  <a href="#running">Running</a> •
+  <a href="#built-with">Built With</a> •
+  <a href="#contributors">Contributors</a> •
+  <a href="#license">License</a>
+</p>
 
-Basic requirements:
-Code editors (VS Code, Atom...)
-Node.js
-React
-Nodemon (optional)
-Python
+---
+
+## About
+
+**ZeroWasteGourmet** is a web application that helps people waste less food at home. It guides users to cook with recipes that minimise food waste, plan their grocery shopping, and create weekly meal plans. By using this app, users can change their shopping, cooking, and eating habits in a sustainable way. 
+ 
+You can search for recipes based on ingredients you have at home. The recipes include tips on how to use all parts of an ingredient. For example, you can use an onion skin, a broccoli stem, or the end of a mushroom.
+
+---
+
+## Setup
+
+##### <a href="#built-with">Requirements:</a> Code editors (VS Code, Atom...), Node.js, React, Nodemon. (optional) Python
 
 
-Client
 
-Use the package manager npm to install the dependencies
+### Client 
 
-From the top-level directory: ss23-zerowastegourmet
+> Download the Node.js and install (https://nodejs.org/).
+Use the package manager npm to install the dependencies.
 
-Change to folder: $ cd client
+1. From the top-level directory: `ss23-zerowastegourmet`
 
-Run the following commands to install express and dependencies:
+2. Change to folder
+   ```sh
+   $ cd client
+   ```
 
-npm install
+3. Run the following commands to install npm and dependencies, the CSS library Bulma:
 
-Server
+   ```sh
+   npm install
+   ```
+   ```sh
+   npm install react-router-dom
+   ```
+   ```sh
+   npm install bulma
+   ```
 
-For installation
+### Server
 
-From the top-level directory: ss23-zerowastegourmet
+> Installation
 
-Change to folder: $ cd server
+1. From the top-level directory: `ss23-zerowastegourmet`
 
-Run the  following commands to install express and dependencies:
+2. Change to folder
+   ```sh
+   $ cd server
 
-npm install
+3. Run following commands to install express and dependencies:
+
+   ```sh
+   npm install
+   ```
 
 Note: If you find any ImportError messages, continue to install missing dependencies.
 
-Python API
+### Python API
 
-For installation
+> Installation
 
-From the top-level directory: ss23-zerowastegourmet
+1. From the top-level directory: `ss23-zerowastegourmet`
 
-Change to folder: $ cd api
+2. Change to folder
+   ```sh
+   $ cd api
 
-Run the  following commands to install flask dependencies:
+3. Run the following command to install flask and dependencies:
 
-pip install flask
+   ```sh
+   pip install flask
+   ```
+---
 
+## Running 
 
-Running
+- **Run the server** 
+1. Go to the directory: `ss23-zerowastegourmet/server`
 
-Run the server:
+2. Run the following command:
 
-Go to the directory: ss23-zerowastegourmet/server
+   ```sh
+   $ node app.js 
+   ``` 
+   or
+   ```sh
+   $ nodemon app.js
+   ```
 
-Run the following commands:
+- **Run the client** 
+1. Go to the directory: `ss23-zerowastegourmet/client`
 
-$ node app.js or $ nodemon app.js
+2. Run the following command:
 
-Run the client:
+   ```sh
+   $ npm start
+   ```
 
-Go to the directory:  ss23-zerowastegourmet/client
+- **Run the API** 
+1. Go to the directory: `ss23-zerowastegourmet/api`
 
-Run the following commands:
+2. Run the following command:
 
-$ npm start
+   ```sh
+   $ python zeroapp.py
+   ```
 
-Run the API:
+---
+## Built With
 
-Go to the directory:  ss23-zerowastegourmet/api
+### Technology
 
-Run the following commands:
+- [React](https://react.dev)
+- [Python](https://www.python.org)
+- [SQLite3](https://www.sqlite.org/index.html)
+- [Flask API](https://flask.palletsprojects.com/en/3.0.x/api/)
+- [Node.js](https://nodejs.org)
+- [Express](https://expressjs.com)
+- [Moongose](https://mongoosejs.com)
+- [MongoDB](https://www.mongodb.com)
+---
 
-$ python zeroapp.py
+## Contributors
 
+### Team members
 
+- UX Thamiris Câmara
+- UX Jana Müller
+- WD Guilherme F. M. Muniz 
+- WD So Jin Park 
+- DS Irene Gon
+- DS Daniel J. Paul
 
-Here are the links for the UX Design part:
+### Mentor
+- Kate Borovikova
+- Petra Broeken
 
-Miro (Research, Define, Ideate, Prototype, Test): https://miro.com/app/board/uXjVMoQzvr4=/?share_link_id=746227968779
-Figma (HiFi Prototype): https://www.figma.com/proto/zACeUXTcCRvmlzGistseLC/Portfolio-Projects?page-id=0%3A1&type=design&node-id=65-765&viewport=77%2C236%2C0.16&t=bBBq6nOadV4kFad0-1&scaling=contain&starting-point-node-id=65%3A765&mode=design 
+#### Techlabs Berlin Summer Term 2023
 
-Note: the Figma link sometimes only works on a specific browser like Google Chrome!
+---
 
-Authors
-
-This project was created by:
-
-Mentor: Ekaterina Borovikova              
-
-Wed Developer:        So Jin PARK 
-
-Wed Developer:        Guilherme Mazzolini  
-
-Data Science:         Daniel John Paul
-
-Data Science:         Irene Gon
-
-User Experience:      Thamiris Câmara
-
-User Experience:      Jana Müller
-
-
-
+## License
+This project is licensed under MIT License.

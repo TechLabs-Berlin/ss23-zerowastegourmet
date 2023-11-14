@@ -9,7 +9,6 @@ import { LoginForm } from "./LoginForm";
 import { Signup } from "./Signup";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-// import { Home } from "./Home";
 import './Navbar.css';
 
 export function Navbar() {
@@ -59,16 +58,27 @@ export function Navbar() {
                         <p className="my-1">Weekly Plan</p>
                     </a>
 
-                    <div className="navbar-item">
-                        <div className="buttons">
-                            <a ><Signup /></a>
-                            <a ><LoginForm /></a>
+                    {isLoggedIn && (
+                        <div className="navbar-item">
+                            <Link className="button" to="/userprofile">
+                                Profile
+                            </Link>
+
+                            <button className="button ml-3" onClick={logOutUser}>Logout</button>
                         </div>
-                    </div>
+
+                    )}
+
+                    {!isLoggedIn && (
+                        <div className="navbar-item">
+                            <div className="buttons">
+                                <a><Signup /></a>
+                                <a><LoginForm /></a>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav >
     );
 }
-
-// export default Navbar;

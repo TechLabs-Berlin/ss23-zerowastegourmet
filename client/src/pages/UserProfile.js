@@ -4,6 +4,4 @@ export function UserProfile() {
             <h1>Hello User</h1>
         </div>
     );
-}
-
-// export default UserProfile;
+};
